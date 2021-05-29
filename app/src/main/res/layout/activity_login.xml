@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/download"
+    tools:context=".LoginSignup.LoginActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="139dp"
+        android:layout_height="167dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="506dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_20210515_114646" />
+
+    <EditText
+        android:id="@+id/emailfiled"
+        android:layout_width="273dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="248dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="424dp"
+        android:drawableStart="@drawable/icons8_username_48"
+        android:focusable="true"
+        android:hint="@string/email"
+        android:inputType="textMultiLine"
+        android:textAlignment="gravity"
+        android:textColorHint="#7E7B7B"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/phonepasswordfilled"
+        android:layout_width="272dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="346dp"
+        android:drawableStart="@drawable/icons8_password_window_48"
+
+        android:focusable="true"
+        android:hint="@string/password"
+        android:textAlignment="gravity"
+        android:textColorHint="#605E5E"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/phone_login_btn"
+        android:layout_width="152dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="541dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="134dp"
+        android:backgroundTint="#59DACE"
+        android:text="@string/Login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/signup2"
+        android:layout_width="152dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="610dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="65dp"
+        android:backgroundTint="#59DACE"
+        android:text="signup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/forgot"
+        android:layout_width="154dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="465dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginBottom="209dp"
+        android:backgroundTint="#59DACE"
+        android:text="Forgot Password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="401dp"
+        android:layout_marginEnd="202dp"
+        android:layout_marginBottom="282dp"
+        android:text="ShowPassword"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
