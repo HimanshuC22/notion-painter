@@ -48,7 +48,7 @@ public class RequestsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        if(getActivity()==null) return;
+        if (getActivity() == null) return;
         super.onCreate(savedInstanceState);
     }
 
@@ -77,15 +77,13 @@ public class RequestsFragment extends Fragment {
 
     }
 
-    public void setUpUI(View view)
-    {
+    public void setUpUI(View view) {
         to_match = new ArrayList<>();
         recyclerView = view.findViewById(R.id.requests_recycler_view);
         empty = view.findViewById(R.id.emptyView);
     }
 
-    public void getInterestMatchList()
-    {
+    public void getInterestMatchList() {
         setUpRecyclerView();
         /*try {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("data").child(LDAP).child("interest_matches");
@@ -113,8 +111,7 @@ public class RequestsFragment extends Fragment {
         }*/
     }
 
-    public void setUpRecyclerView()
-    {
+    public void setUpRecyclerView() {
         RequestAdapter adapter = new RequestAdapter(getContext(), to_match);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setOnFlingListener(null);
@@ -129,8 +126,7 @@ public class RequestsFragment extends Fragment {
             } else {
                 HashMap<String, ArrayList<Long>> longdata = (HashMap<String, ArrayList<Long>>) task.getResult().getValue();
                 HashMap<String, ArrayList<Double>> doubledata = new HashMap<>();
-                for(Map.Entry<String, ArrayList<Long>> e : longdata.entrySet())
-                {
+                for (Map.Entry<String, ArrayList<Long>> e : longdata.entrySet()) {
                     ArrayList<Double> temp = new ArrayList<>();
                     for (Long l : e.getValue())
                         temp.add(l.doubleValue());
@@ -146,10 +142,6 @@ public class RequestsFragment extends Fragment {
                 }
             }
         });
-
-
-        if(recyclerView.getAdapter().getItemCount()==0) empty.setVisibility(View.VISIBLE);
-        else empty.setVisibility(View.GONE);
     }
 
 }
