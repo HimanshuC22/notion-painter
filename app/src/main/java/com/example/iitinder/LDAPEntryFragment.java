@@ -70,45 +70,70 @@ public class LDAPEntryFragment extends Fragment {
 
                     //connect to the database and set the data URL
                     FirebaseDatabase database = FirebaseDatabase.getInstance("https://notion-painter-default-rtdb.firebaseio.com/");
-                    database.getReference().child("data").child(email.substring(0, email.indexOf("@"))).addValueEventListener(new ValueEventListener() {
+                    database.getReference().child("data").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            DatabaseReference myRef = database.getReference("/users/" + email.substring(0, email.lastIndexOf('@')));
-                            myRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    //if the database contains the LDAP id, value will be name of user
-                                    String value = dataSnapshot.getValue(String.class);
-                                    if (value != null) {
-                                        Log.d("FIREBASE", "Value is " + value);
-                                        getParentFragmentManager().beginTransaction()
-                                                .setReorderingAllowed(true)
-                                                .replace(R.id.fragment_container_view, PasswordEntryFragment.newInstance(email, value))
-                                                .addToBackStack(null)
-                                                .commit();
-                                    } else {
-                                        new AlertDialog.Builder(getContext())
-                                                .setTitle("Invalid LDAP")
-                                                .setMessage("Please enter a valid LDAP ID")
-                                                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                                                    dialog.dismiss();
-                                                })
-                                                .setIcon(android.R.drawable.ic_dialog_alert)
-                                                .show();
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.hasChild(email.substring(0, email.indexOf("@")))) {
+                                new AlertDialog.Builder(getContext())
+                                        .setTitle("Already Registered")
+                                        .setMessage("Please sign in instead")
+                                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                            dialog.dismiss();
+                                        })
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .show();
+                            } else {
+                                getParentFragmentManager().beginTransaction()
+                                        .setReorderingAllowed(true)
+                                        .replace(R.id.fragment_container_view, PasswordEntryFragment.newInstance(email, ""))
+                                        .addToBackStack(null)
+                                        .commit();
+                                /*database.getReference().child("data").child(email.substring(0, email.indexOf("@"))).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot snapshot) {
+                                        DatabaseReference myRef = database.getReference("/users/" + email.substring(0, email.lastIndexOf('@')));
+                                        myRef.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                //if the database contains the LDAP id, value will be name of user
+                                                String value = dataSnapshot.getValue(String.class);
+                                                if (value != null) {
+                                                    Log.d("FIREBASE", "Value is " + value);
+                                                    getParentFragmentManager().beginTransaction()
+                                                            .setReorderingAllowed(true)
+                                                            .replace(R.id.fragment_container_view, PasswordEntryFragment.newInstance(email, value))
+                                                            .addToBackStack(null)
+                                                            .commit();
+                                                } else {
+                                                    new AlertDialog.Builder(getContext())
+                                                            .setTitle("Invalid LDAP")
+                                                            .setMessage("Please enter a valid LDAP ID")
+                                                            .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                                                dialog.dismiss();
+                                                            })
+                                                            .setIcon(android.R.drawable.ic_dialog_alert)
+                                                            .show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                Log.w("FIREBASE", "Failed to read value", databaseError.toException());
+                                            }
+                                        });
+
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Log.w("FIREBASE", "Failed to read value", databaseError.toException());
-                                }
-                            });
+                                    @Override
+                                    public void onCancelled(DatabaseError error) {
+
+                                    }
+                                });*/
+                            }
                         }
 
                         @Override
-                        public void onCancelled(DatabaseError error) {
-
-                        }
+                        public void onCancelled(@NonNull DatabaseError error) { }
                     });
 
                 } else {
