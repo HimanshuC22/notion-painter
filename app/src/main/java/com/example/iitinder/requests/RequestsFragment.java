@@ -115,23 +115,39 @@ public class RequestsFragment extends Fragment {
 
     public void setUpRecyclerView()
     {
+        RequestAdapter adapter = new RequestAdapter(getContext(), to_match);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setOnFlingListener(null);
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
+        recyclerView.setAdapter(adapter);
+
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("mprefs").get().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
                 Log.e("REQFRAG/FIREBASE", "Error getting data", task.getException());
             } else {
-                HashMap<String, ArrayList<Double>> data = (HashMap<String, ArrayList<Double>>) task.getResult().getValue();
-                LinkedHashMap<String, Double> mres = new FNormCalc(data).compute(LDAP);
-                for (Map.Entry<String, Double> e : mres.entrySet())
+                HashMap<String, ArrayList<Long>> longdata = (HashMap<String, ArrayList<Long>>) task.getResult().getValue();
+                HashMap<String, ArrayList<Double>> doubledata = new HashMap<>();
+                for(Map.Entry<String, ArrayList<Long>> e : longdata.entrySet())
+                {
+                    ArrayList<Double> temp = new ArrayList<>();
+                    for (Long l : e.getValue())
+                        temp.add(l.doubleValue());
+
+                    doubledata.put(e.getKey(), temp);
+                }
+
+                LinkedHashMap<String, Double> mres = new FNormCalc(doubledata).compute(LDAP);
+                for (Map.Entry<String, Double> e : mres.entrySet()) {
                     to_match.add(e.getKey());
+                    Log.d("TOMATCH", to_match.toString());
+                    adapter.notifyDataSetChanged();
+                }
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setOnFlingListener(null);
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(recyclerView);
-        recyclerView.setAdapter(new RequestAdapter(getContext(), to_match));
+
         if(recyclerView.getAdapter().getItemCount()==0) empty.setVisibility(View.VISIBLE);
         else empty.setVisibility(View.GONE);
     }
