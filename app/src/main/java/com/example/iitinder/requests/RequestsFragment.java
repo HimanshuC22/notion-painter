@@ -25,9 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import com.example.iitinder.FNormCalc;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class RequestsFragment extends Fragment {
 
@@ -109,6 +114,18 @@ public class RequestsFragment extends Fragment {
 
     public void setUpRecyclerView()
     {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("mprefs").get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("REQFRAG/FIREBASE", "Error getting data", task.getException());
+            } else {
+                HashMap<String, ArrayList<Double>> data = (HashMap<String, ArrayList<Double>>) task.getResult().getValue();
+                LinkedHashMap<String, Double> mres = new FNormCalc(data).compute(LDAP);
+                for (Map.Entry<String, Double> e : mres.entrySet())
+                    to_match.add(e.getKey());
+            }
+        });
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setOnFlingListener(null);
         SnapHelper snapHelper = new LinearSnapHelper();
