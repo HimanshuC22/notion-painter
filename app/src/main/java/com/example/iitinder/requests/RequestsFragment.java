@@ -86,7 +86,8 @@ public class RequestsFragment extends Fragment {
 
     public void getInterestMatchList()
     {
-        try {
+        setUpRecyclerView();
+        /*try {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("data").child(LDAP).child("interest_matches");
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -109,7 +110,7 @@ public class RequestsFragment extends Fragment {
             recyclerView.setAdapter(new RequestAdapter(getContext(), new ArrayList<>()));
             Toast.makeText(getContext(), e.toString(), Toast.LENGTH_LONG);
             Log.d("E/REQFRAG", e.toString());
-        }
+        }*/
     }
 
     public void setUpRecyclerView()

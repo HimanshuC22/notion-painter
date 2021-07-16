@@ -28,7 +28,7 @@ public class FNormCalc {
 
             sqsum = 0;
             for (i = 0; i < PREFS_SIZE; i++)
-                sqsum += (prefs.get(i) - refprefs.get(i)) * (prefs.get(i) - refprefs.get(i));
+                sqsum += (prefs.get(i).doubleValue() - refprefs.get(i).doubleValue()) * (prefs.get(i).doubleValue() - refprefs.get(i).doubleValue());
 
             res.put(e.getKey(), sqsum);
         }
