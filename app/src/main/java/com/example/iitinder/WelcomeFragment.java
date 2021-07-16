@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.iitinder.profile.ProfileFragment;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link WelcomeFragment#newInstance} factory method to

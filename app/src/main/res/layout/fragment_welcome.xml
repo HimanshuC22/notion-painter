@@ -14,6 +14,10 @@
         android:layout_marginBottom="80dp"
         android:background="@drawable/button"
         android:text="@string/btnContinueText"
+        android:textSize="18sp"
+        android:textColor="@color/main"
+        android:textStyle="bold"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.518"
@@ -22,22 +26,22 @@
     <TextView
         android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:text="@string/txtWelcomeText"
-
+        android:layout_marginBottom="80dp"
+        android:text="Sign Up"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="45sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="250sp"
-        android:layout_height="250sp"
-        android:src="@drawable/ic_launcher_background"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:src="@drawable/img_20210515_114646"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

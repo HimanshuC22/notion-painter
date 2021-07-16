@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/download"
     tools:context=".LoginSignup.First_page">
+
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="166dp"
-        android:layout_height="139dp"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="123dp"
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,63 +19,117 @@
 
 
     <Button
-        android:id="@+id/loginemail"
-        android:layout_width="232dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="299dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="370dp"
-        android:drawableBottom="@color/design_default_color_primary_variant"
-        android:text="Login with Email"
-        android:backgroundTint="#1FC6B6"
-        android:textColor="#F8F6F6"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#23E6D4" />
-
-    <Button
         android:id="@+id/signup"
-        android:layout_width="232dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="515dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="154dp"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/btn_signup"
         android:drawableBottom="#5DE3D6"
-        android:text="Signup"
-        android:backgroundTint="#1FC6B6"
-        android:textColor="#F8F6F6"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/main"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
         app:rippleColor="#23E6D4" />
 
-    <Button
-        android:id="@+id/loginphone"
-        android:layout_width="232dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="406dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="263dp"
-        android:drawableBottom="@color/design_default_color_primary_variant"
-        android:text="Login with Phone"
-        android:textColor="#F8F6F6"
-        android:backgroundTint="#1FC6B6"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="467dp">
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Login by"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#23E6D4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Don't have an account?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <Button
+            android:id="@+id/loginemail"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loginbtn1"
+            android:drawableBottom="@color/design_default_color_primary_variant"
+            android:elevation="3sp"
+            android:text="Email"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/main"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/loginphone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#23E6D4" />
+
+        <Button
+            android:id="@+id/loginphone"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loginbtn2"
+            android:drawableBottom="@color/design_default_color_primary_variant"
+            android:elevation="3sp"
+            android:text="Phone"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/main"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/loginemail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="#23E6D4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:text="Login or Sign Up"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

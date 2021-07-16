@@ -1,12 +1,16 @@
 package com.example.iitinder;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -62,38 +66,51 @@ public class LDAPEntryFragment extends Fragment {
 
                 // check if the email ends in iitb.ac.in
                 if (email.substring(email.lastIndexOf('@') + 1).equals("iitb.ac.in")) {
+                    String ldap = email.substring(0, email.indexOf("@"));
+
                     //connect to the database and set the data URL
                     FirebaseDatabase database = FirebaseDatabase.getInstance("https://notion-painter-default-rtdb.firebaseio.com/");
-                    DatabaseReference myRef = database.getReference("/users/" + email.substring(0, email.lastIndexOf('@')));
-                    myRef.addValueEventListener(new ValueEventListener() {
+                    database.getReference().child("data").child(email.substring(0, email.indexOf("@"))).addValueEventListener(new ValueEventListener() {
                         @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            //if the database contains the LDAP id, value will be name of user
-                            String value = dataSnapshot.getValue(String.class);
-                            if (value != null) {
-                                Log.d("FIREBASE", "Value is " + value);
-                                getParentFragmentManager().beginTransaction()
-                                        .setReorderingAllowed(true)
-                                        .replace(R.id.fragment_container_view, PasswordEntryFragment.newInstance(email, value))
-                                        .addToBackStack(null)
-                                        .commit();
-                            } else {
-                                new AlertDialog.Builder(getContext())
-                                        .setTitle("Invalid LDAP")
-                                        .setMessage("Please enter a valid LDAP ID")
-                                        .setPositiveButton(android.R.string.ok, (dialog, which) -> {
-                                            dialog.dismiss();
-                                        })
-                                        .setIcon(android.R.drawable.ic_dialog_alert)
-                                        .show();
-                            }
+                        public void onDataChange(DataSnapshot snapshot) {
+                            DatabaseReference myRef = database.getReference("/users/" + email.substring(0, email.lastIndexOf('@')));
+                            myRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    //if the database contains the LDAP id, value will be name of user
+                                    String value = dataSnapshot.getValue(String.class);
+                                    if (value != null) {
+                                        Log.d("FIREBASE", "Value is " + value);
+                                        getParentFragmentManager().beginTransaction()
+                                                .setReorderingAllowed(true)
+                                                .replace(R.id.fragment_container_view, PasswordEntryFragment.newInstance(email, value))
+                                                .addToBackStack(null)
+                                                .commit();
+                                    } else {
+                                        new AlertDialog.Builder(getContext())
+                                                .setTitle("Invalid LDAP")
+                                                .setMessage("Please enter a valid LDAP ID")
+                                                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                                                    dialog.dismiss();
+                                                })
+                                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                                .show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+                                    Log.w("FIREBASE", "Failed to read value", databaseError.toException());
+                                }
+                            });
                         }
 
                         @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Log.w("FIREBASE", "Failed to read value", databaseError.toException());
+                        public void onCancelled(DatabaseError error) {
+
                         }
                     });
+
                 } else {
                     new AlertDialog.Builder(getContext())
                             .setTitle("Invalid LDAP")

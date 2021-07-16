@@ -13,7 +13,7 @@
     <string name="txtPasswordEntryInst2Text">Create a strong password. अगर आपका account hack करने के बाद hacker ने आपका काट दिया तो हम जिम्मेदार नहीं हैं।</string>
     <string name="txtCreateUserFragmentInst1Text">Almost Done!</string>
     <string name="txtCreateUserFragmentInst2Text">We have sent a verification email to your LDAP account. Please click the link in the email and then tap the button below.</string>
-    <string name="btnCreateUserFragmentNextText">CHECK VERIFICATION STATUS</string>
+    <string name="btnCreateUserFragmentNextText">Verify and Next</string>
     <string name="rbtnMaleText">Male</string>
     <string name="rbtnFemaleText">Female</string>
     <string name="rbtnOtherText">Prefer not to say</string>
@@ -31,4 +31,13 @@
     <string name="signup">signup</string>
     <string name="Login">Login</string>
     <string name="phone_no">Phone No.</string>
+
+    <string name="biosample">HImalsdjfaldfhaofaosdguaigasglb
+    asfdasdgagawsgafgasfgasfgasfgasfgasfga
+    sfgafgasgdasfgasfgasfgasfgasfgafgafsg</string>
+
+    <string name="USER_NAME">NAME</string>
+    <string name="USER_EMAIL">EMAIL</string>
+    <string name="USER_MOBILE">9876543211</string>
+    <string name="USER_GENDER">M</string>
 </resources>

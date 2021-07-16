@@ -8,10 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="shadow_gray">#D9D9D9</color>
-    <color name="light_gray">#F7F7F7</color>
+    <color name="light_gray">#D5D5D5</color>
+    <color name="light_gray_translucent">#75D5D5D5</color>
+    <color name="text_gray">#454545</color>
     <color name="main">#8648FF</color>
     <color name="textmainhead">#02003F</color>
     <color name="editTextBack">#d6d6d6</color>
     <color name="cancelRed">#F31808</color>
     <color name="green_select">#48FF85</color>
+    <color name="change_back">#85CEFF</color>
+    <color name="change_text">#007AE4</color>
+    <color name="tinder">@color/main</color>
+    <color name="tinder_light">#BF9FFF</color>
+    <color name="background">#dddddd</color>
+    <color name="transparent"> #00FFFFFF</color>
 </resources>

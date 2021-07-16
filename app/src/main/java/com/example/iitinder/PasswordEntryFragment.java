@@ -1,5 +1,7 @@
 package com.example.iitinder;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,13 +66,19 @@ public class PasswordEntryFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_password_entry, container, false);
     }
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        sharedPreferences = getActivity().getSharedPreferences("DETAILS", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         view.findViewById(R.id.btnPasswordEntryNext).setOnClickListener(v -> {
             String passwd = ((EditText) view.findViewById(R.id.editTextTextPassword)).getText().toString();
             String confirm = ((EditText) view.findViewById(R.id.editTextTextPassword2)).getText().toString();
             if(passwd.equals(confirm) && (!(passwd.isEmpty()) && !(confirm.isEmpty())))
             {
+                editor.putString("PASSWORD", passwd);
                 getParentFragmentManager().beginTransaction()
                         .setReorderingAllowed(true)
                         .replace(R.id.fragment_container_view, com.example.iitinder.CreateUserFragment.newInstance(mParam1, passwd))

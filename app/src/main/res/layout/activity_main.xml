@@ -3,52 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/light_gray"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/signout"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="65sp"
+        android:background="@color/main"
+        android:padding="5sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/mainHeadingActionBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:text="IITinder"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/button_logout"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_logout"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/button_matches"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="24dp"
+                android:clickable="true"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:src="@drawable/ic_matches"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_logout"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+
+    <!--<androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:name="com.example.iitinder.requests.RequestsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintHeight_default="spread"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />-->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="167dp"
-        android:layout_marginEnd="175dp"
-        android:layout_marginBottom="516dp"
-        android:text="signout"
+        android:layout_gravity="bottom"
+        android:layout_margin="10sp"
+        android:background="@drawable/bottom_navbar_background"
+        app:itemIconTint="@drawable/bottom_navbat"
+        app:itemRippleColor="@color/tinder_light"
+        app:itemTextColor="@drawable/bottom_navbat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <EditText
-        android:id="@+id/number"
-        android:layout_width="258dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="279dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="406dp"
-        android:drawableLeft="@drawable/icons8_email_25"
-        android:hint="number"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/submit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginTop="364dp"
-        android:layout_marginEnd="180dp"
-        android:layout_marginBottom="319dp"
-        android:text="submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/navigation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

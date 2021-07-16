@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -19,7 +20,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 
 public class InterestPickerActivity extends AppCompatActivity {
     ArrayList<String> interestList;
@@ -27,14 +34,18 @@ public class InterestPickerActivity extends AppCompatActivity {
     ConstraintLayout[] interestGridLayout;
     String[] interestArray, subInterestArray;
     String[][] subMultiArray;
+    Button submit;
+    String LDAP, EMAIL;
     boolean isSelected[];
     int length;
-    GridView gridViewInterest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest_picker);
+
+        EMAIL = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        LDAP = EMAIL.substring(0, EMAIL.indexOf("@"));
 
         interestList = new ArrayList<>();
         interestGridLayout = new ConstraintLayout[]{findViewById(R.id.interestConstraint1), findViewById(R.id.interestConstraint2)};
@@ -69,6 +80,62 @@ public class InterestPickerActivity extends AppCompatActivity {
         for (int i = 0; i < length; i++) {
             isSelected[i] = false;
         }
+
+        submit = findViewById(R.id.buttonSubmit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int size = 0;
+                for (String[] arr: subMultiArray)
+                    size += arr.length;
+
+                double array[] = new double[size];
+                int k = 0;
+
+                for(int i = 0; i<INTEREST_FINAL.length; i++)
+                {
+                    for(int j = 0; j<subMultiArray[i].length; j++)
+                    {
+                        if(INTEREST_FINAL[i].contains(subMultiArray[i][j])) array[k] = 1.0;
+                        k++;
+                    }
+                }
+                ArrayList<Double> temp = new ArrayList<>();
+                for(double x : array)
+                {
+                    temp.add(x);
+                }
+                /*LinkedHashMap<String, ArrayList<Double>> writetofb = new LinkedHashMap<>();
+                writetofb.put(LDAP, temp);*/
+                FirebaseDatabase.getInstance().getReference().child("mprefs").child(LDAP).setValue(null);
+                FirebaseDatabase.getInstance().getReference().child("mprefs").child(LDAP).setValue(temp);
+
+                int count = 0;
+                for(int i = 0; i<INTEREST_FINAL.length; i++)
+                {
+                    if(INTEREST_FINAL[i].isEmpty()) count++;
+                }
+                if(count < 3) Toast.makeText(getApplicationContext(), "Please select at least 3 interests", Toast.LENGTH_LONG).show();
+                else
+                {
+                    FirebaseDatabase.getInstance().getReference().child("interests").child(LDAP).setValue(null);
+                    for(int i = 0; i<INTEREST_FINAL.length; i++)
+                    {
+                        if(!INTEREST_FINAL[i].isEmpty())
+                        {
+                            for(int j = 0; j<INTEREST_FINAL[i].size(); j++)
+                            {
+                                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("interests").child(LDAP);
+                                mDatabase.child(interestArray[i]).child(Integer.toString(j)).setValue(INTEREST_FINAL[i].get(j));
+                            }
+                        }
+                    }
+
+                    finish();
+                }
+            }
+        });
     }
 
     int id, mainPos;

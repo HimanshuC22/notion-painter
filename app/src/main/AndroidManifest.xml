@@ -12,23 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IItinder">
-        <activity android:name=".LoginSignup.SplashScreen">
-
+        <activity android:name=".OtherInterestActivity" android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".chatting.MainChatActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".chatting.ChatActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".OtherProfileActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MatchesActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".profile.InterestViewActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".profile.ImageChangeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSignup.SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginSignup.Login_phone_Activity" />
-        <activity android:name=".LoginSignup.Forgot_password" />
-        <activity android:name=".LoginSignup.SignupActivity" />
-        <activity android:name=".LoginSignup.LoginActivity" />
-        <activity android:name=".LoginSignup.First_page" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".RegistrationStartActivity" />
-        <activity android:name=".InterestPickerActivity" />
-
+        <activity android:name=".LoginSignup.Login_phone_Activity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSignup.Forgot_password" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSignup.SignupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSignup.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginSignup.First_page" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".RegistrationStartActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".InterestPickerActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

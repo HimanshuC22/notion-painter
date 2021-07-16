@@ -53,4 +53,5 @@ public class InterestGridAdapter extends BaseAdapter {
 
         return gridItem;
     }
+
 }

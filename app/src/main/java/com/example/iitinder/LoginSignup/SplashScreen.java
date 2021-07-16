@@ -3,14 +3,19 @@ package com.example.iitinder.LoginSignup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.SparseLongArray;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.iitinder.MainActivity;
 import com.example.iitinder.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,9 +63,16 @@ public class SplashScreen extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
     }
 
+    private SharedPreferences sharedPreferences;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        sharedPreferences = getSharedPreferences("DETAILS", MODE_PRIVATE);
+        String EMAIL, PASSWORD;
+        EMAIL = sharedPreferences.getString("EMAIL", "LDAP_NOT_FOUND_IN_PREFERENCES");
+        PASSWORD = sharedPreferences.getString("PASSWORD", "PASSWORD_NOT_FOUND_IN_PREFERENCES");
 
         appName = findViewById(R.id.app_name);
         appTitle = findViewById(R.id.app_title);
@@ -74,9 +86,18 @@ public class SplashScreen extends AppCompatActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, First_page.class);
-                startActivity(intent);
-                finish();
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                Log.d("EMAIL/", EMAIL);
+                Log.d("PASSWORD/", PASSWORD);
+                mAuth.signInWithEmailAndPassword(EMAIL, PASSWORD).addOnSuccessListener(authResult -> {
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class));
+                    finish();
+                }).addOnFailureListener(e -> {
+                    Log.d("SPLASH/SIGN", e.toString());
+                    Intent intent = new Intent(SplashScreen.this, First_page.class);
+                    startActivity(intent);
+                    finish();
+                });
             }
         }, 6000);
     }
@@ -85,6 +106,5 @@ public class SplashScreen extends AppCompatActivity {
         Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoomin);
         appName.startAnimation((animation1));
         appTitle.startAnimation((animation1));
-
     }
 }

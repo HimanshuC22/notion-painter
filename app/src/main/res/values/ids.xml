@@ -3,4 +3,7 @@
     <item name="main_constraint_layout" type="id" />
     <item name="subGrid" type="id"/>
     <item name="mainText" type="id" />
+    <item name="profile_progress" type="id" />
+    <item name="viewPager" type="id" />
+    <item name="friend_profile_image" type="id" />
 </resources>

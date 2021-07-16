@@ -1,5 +1,42 @@
 <resources>
+
     <style name="myDatePickerStyle" parent="android:Widget.Material.DatePicker">
         <item name="android:datePickerMode">spinner</item>
+    </style>
+
+    <style name="buttonTextColor" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:buttonStyle">@style/ButtonColor</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
+
+    <style name="customDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@drawable/progress</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="DialogTheme">
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+    </style>
+
+    <style name="DialogThemeOther">
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
+
+    <style name="ButtonColor" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="roundedImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25sp</item>
+
+        <item name="color">@color/white</item>
     </style>
 </resources>

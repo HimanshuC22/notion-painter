@@ -2,6 +2,7 @@ package com.example.iitinder;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -119,6 +121,11 @@ public class GetDetailsFragment extends Fragment {
             mDatabase.child("data").child(ldap).child("name").setValue(name);
             mDatabase.child("data").child(ldap).child("gender").setValue(gender);
             mDatabase.child("data").child(ldap).child("dob").setValue(dob);
+            mDatabase.child("data").child(ldap).child("bio").setValue("Not Set");
+            mDatabase.child("data").child(ldap).child("place").setValue("Not Set");
+            mDatabase.child("data").child(ldap).child("mobile").setValue(phone);
+            mDatabase.child("data").child(ldap).child("uid").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            mDatabase.child("data").child(ldap).child("flags").setValue(0);
             mDatabase.child("map").child(phone).setValue(ldap);
 
             startActivity(new Intent(getActivity(), InterestPickerActivity.class));
