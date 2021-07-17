@@ -1,4 +1,4 @@
- package com.example.iitinder;
+package com.example.iitinder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentContainerView;
@@ -19,6 +19,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * This is the first screen visible to the logged-in user
+ */
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
