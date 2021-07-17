@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 
 /**
+ * This fragment accepts the LDAP of the user
+ *
  * A simple {@link Fragment} subclass.
  * Use the {@link LDAPEntryFragment#newInstance} factory method to
  * create an instance of this fragment.
