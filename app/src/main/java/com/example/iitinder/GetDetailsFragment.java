@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.Calendar;
 
@@ -106,7 +107,7 @@ public class GetDetailsFragment extends Fragment {
                 cal.set(Calendar.YEAR, year);
                 cal.set(Calendar.MONTH, month);
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                editTextDate.setText(year + " " + month + " " + dayOfMonth);
+                editTextDate.setText(year + " " + (month+1) + " " + dayOfMonth);
             }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)).show();
         });
 
@@ -128,7 +129,16 @@ public class GetDetailsFragment extends Fragment {
             mDatabase.child("data").child(ldap).child("flags").setValue(0);
             mDatabase.child("map").child(phone).setValue(ldap);
 
-            startActivity(new Intent(getActivity(), InterestPickerActivity.class));
+            Uri male = Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/"+R.drawable.male);
+            Uri female = Uri.parse("android.resource://"+ R.class.getPackage().getName()+"/"+R.drawable.female);
+            if (gender.equals("f")) FirebaseStorage.getInstance().getReference().child("photos").child(ldap).child("profile.jpg").putFile(female);
+            else FirebaseStorage.getInstance().getReference().child("photos").child(ldap).child("profile.jpg").putFile(male);
+
+
+            Intent intent = new Intent(getActivity(), InterestPickerActivity.class);
+            intent.putExtra("state", "first");
+            startActivity(intent);
+            getActivity().finish();
         });
     }
 }

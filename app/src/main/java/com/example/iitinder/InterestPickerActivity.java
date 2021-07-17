@@ -1,6 +1,7 @@
 package com.example.iitinder;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -131,8 +132,13 @@ public class InterestPickerActivity extends AppCompatActivity {
                             }
                         }
                     }
-
-                    finish();
+                    String state = getIntent().getExtras().getString("state");
+                    if ((state.equals("first"))) {
+                        startActivity(new Intent(InterestPickerActivity.this, MainActivity.class));
+                        finish();
+                    } else {
+                        finish();
+                    }
                 }
             }
         });

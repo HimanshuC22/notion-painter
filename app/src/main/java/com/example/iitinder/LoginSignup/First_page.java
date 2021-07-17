@@ -10,6 +10,10 @@ import android.widget.Button;
 import com.example.iitinder.R;
 import com.example.iitinder.RegistrationStartActivity;
 
+/**
+ * Activity asking users to choose their login method
+ */
+
 public class First_page extends AppCompatActivity {
 
     private Button loginemail, loginphone, signup;

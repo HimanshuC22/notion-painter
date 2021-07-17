@@ -137,7 +137,9 @@ public class ProfileInterestFragment extends Fragment {
                     .setTitle("Confirmation")
                     .setPositiveButton("YES", (dialog, which) -> {
                         // Maybe move to activity
-                        startActivity(new Intent(getActivity(), InterestPickerActivity.class));
+                        Intent intent = new Intent(getActivity(), InterestPickerActivity.class);
+                        intent.putExtra("state", "second");
+                        startActivity(intent);
                     })
                     .setNegativeButton("NO", (dialog, which) -> {
                         dialog.dismiss();

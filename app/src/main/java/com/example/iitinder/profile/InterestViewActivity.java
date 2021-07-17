@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 import com.example.iitinder.R;
 
+/**
+ * Activity to show detailed interests of the users
+ */
+
 public class InterestViewActivity extends AppCompatActivity {
 
     @Override

@@ -70,8 +70,10 @@ public class MatchesActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren())
                 {
-                    Log.d("LDAP", dataSnapshot.getKey());
-                    matchesList.add(dataSnapshot.getKey());
+                    if(snapshot.child(dataSnapshot.getKey()).getValue()!=null && snapshot.child(dataSnapshot.getKey()).getValue().equals("friend"))
+                    {
+                        matchesList.add(dataSnapshot.getKey());
+                    }
                 }
                 setUpRecyclerView();
             }

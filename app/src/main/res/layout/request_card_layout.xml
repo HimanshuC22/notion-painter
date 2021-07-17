@@ -73,7 +73,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingTop="20sp"
+                        android:paddingVertical="20sp"
                         android:background="@color/light_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +84,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginBottom="60dp"
                             android:fontFamily="@font/sf_pro"
                             android:paddingHorizontal="10sp"
                             android:paddingVertical="1sp"
@@ -93,7 +92,8 @@
                             android:textSize="28sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/req_interests"
@@ -105,11 +105,10 @@
                             android:paddingHorizontal="10sp"
                             android:paddingVertical="1sp"
                             android:text="You both like"
+                            android:visibility="gone"
                             android:textColor="@color/text_gray"
                             android:textSize="20sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/req_name" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/viewProfile"

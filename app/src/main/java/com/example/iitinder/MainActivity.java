@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.iitinder.LoginSignup.First_page;
+import com.example.iitinder.LoginSignup.SplashScreen;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
@@ -22,7 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 /**
  * This is the first screen visible to the logged-in user
  */
-public class MainActivity extends AppCompatActivity {
+import java.io.IOException;
+
+ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -64,20 +68,16 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() != R.id.item_profile) logoutButton.setVisibility(View.GONE);
             switch (item.getItemId()) {
-                case R.id.item_main: {
+                case R.id.item_requests: {
                     viewPager.setCurrentItem(0);
                 }
                 return true;
-                case R.id.item_requests: {
+                case R.id.item_chat: {
                     viewPager.setCurrentItem(1);
                 }
                 return true;
-                case R.id.item_chat: {
-                    viewPager.setCurrentItem(2);
-                }
-                return true;
                 case R.id.item_profile: {
-                    viewPager.setCurrentItem(3);
+                    viewPager.setCurrentItem(2);
                     logoutButton.setVisibility(View.VISIBLE);
                 }
                 return true;
@@ -106,11 +106,16 @@ public class MainActivity extends AppCompatActivity {
 
         logoutButton.setVisibility(View.GONE);
         logoutButton.setOnClickListener(v -> {
+            editor.putString("EMAIL", "LDAP_NOT_FOUND_IN_PREFERENCES").apply();
+            editor.putString("PASSWORD", "PASSWORD_NOT_FOUND_IN_PREFERENCES").apply();
+            Toast.makeText(this, "LOGGED OUT SUCCESSFULLY", Toast.LENGTH_LONG).show();
             FirebaseAuth.getInstance().signOut();
-            editor.remove("EMAIL").apply();
-            editor.remove("PASSWORD").apply();
-            startActivity(new Intent(MainActivity.this, First_page.class));
-            onDestroy();
+            Runtime runtime = Runtime.getRuntime();
+            try {
+                runtime.exec("pm clear com.example.iitinder");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 //        containerView = findViewById(R.id.mainFragmentContainerView);
     }
@@ -124,15 +129,12 @@ public class MainActivity extends AppCompatActivity {
                     super.onPageSelected(position);
                     switch (position) {
                         case 0:
-                            navigationView.setSelectedItemId(R.id.item_main);
-                            break;
-                        case 1:
                             navigationView.setSelectedItemId(R.id.item_requests);
                             break;
-                        case 2:
+                        case 1:
                             navigationView.setSelectedItemId(R.id.item_chat);
                             break;
-                        case 3:
+                        case 2:
                             navigationView.setSelectedItemId(R.id.item_profile);
                             break;
                     }

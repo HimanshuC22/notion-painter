@@ -106,23 +106,23 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         holder.accept.setOnClickListener(v -> {
             holder.accept.setVisibility(View.GONE);
             holder.reject.setVisibility(View.GONE);
-            holder.result.setText("Accepted");
-            holder.result.setVisibility(View.VISIBLE);
-            reference1.child("data").child(myLDAP).child("interest_matches").child(data.get(position)).setValue("matched");
-            reference1.child("data").child(myLDAP).child("requests").addValueEventListener(new ValueEventListener() {
+
+            reference1.child("data").child(data.get(position)).child("pending").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot snapshot) {
-                    if (snapshot.child(data.get(position)).getValue() != null) {
-                        reference1.child("data").child(myLDAP).child("requests").child(data.get(position)).setValue("accepted");
+                    if (snapshot.child(myLDAP).getValue() != null) {
+                        reference1.child("data").child(data.get(position)).child("pending").child(myLDAP).setValue("accepted");
                         reference1.child("data").child(data.get(position)).child("matches").child(myLDAP).setValue("friend");
                         reference1.child("data").child(myLDAP).child("matches").child(data.get(position)).setValue("friend");
+                        holder.result.setText("Accepted");
+                        holder.result.setVisibility(View.VISIBLE);
                         Toast.makeText(context, "Matched from both users!", Toast.LENGTH_LONG).show();
+                    } else {
+                        reference1.child("data").child(myLDAP).child("pending").child(data.get(position)).setValue("pending");
+                        holder.result.setText("Requested");
+                        holder.result.setVisibility(View.VISIBLE);
+                        Toast.makeText(context, "Accepted Match and Requested", Toast.LENGTH_LONG).show();
                     }
-                    else
-                    {
-                        reference1.child("data").child(data.get(position)).child("requests").child(myLDAP).setValue("requested");
-                    }
-                    Toast.makeText(context, "Accepted Match and Requested", Toast.LENGTH_LONG).show();
                 }
 
                 @Override
@@ -130,7 +130,24 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
                 }
             });
+        });
 
+        holder.reject.setOnClickListener(v -> {
+            reference1.child("data").child(data.get(position)).child("pending").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot snapshot) {
+                    reference1.child("data").child(myLDAP).child("rejected").child(data.get(position)).setValue("rejected");
+                    holder.result.setText("Rejected");
+                    holder.result.setVisibility(View.VISIBLE);
+                    holder.accept.setVisibility(View.GONE);
+                    holder.reject.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+
+                }
+            });
         });
 
         holder.see.setOnClickListener(v -> {
@@ -141,7 +158,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         ArrayList<String> common = getCommonInterests(myLDAP, data.get(position));
         String s = "";
         for (String str : common) s += str + " ";
-        holder.commonInterests.setText(holder.commonInterests.getText()+" "+s);
+        holder.commonInterests.setText(holder.commonInterests.getText() + " " + s);
     }
 
     @Override
@@ -149,8 +166,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         return data.size();
     }
 
-    public ArrayList<String> getCommonInterests(String LDAP1, String LDAP2)
-    {
+    public ArrayList<String> getCommonInterests(String LDAP1, String LDAP2) {
         ArrayList<String> common = new ArrayList<>();
 
         DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("interests").child(LDAP1);
@@ -158,14 +174,12 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
         reference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                for(DataSnapshot snapshot1 : snapshot.getChildren())
-                {
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
                     reference2.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot snapshot22) {
-                            for(DataSnapshot snapshot2 : snapshot22.getChildren())
-                            {
-                                if(snapshot1.getKey() == snapshot2.getKey())
+                            for (DataSnapshot snapshot2 : snapshot22.getChildren()) {
+                                if (snapshot1.getKey().equals(snapshot2.getKey()))
                                     common.add(snapshot1.getKey());
                             }
                         }
@@ -183,7 +197,6 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
             }
         });
-
         return common;
     }
 }

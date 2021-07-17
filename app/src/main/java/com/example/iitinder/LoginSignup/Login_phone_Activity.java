@@ -32,6 +32,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Activity for handling login through phone no.
+ */
 
 public class Login_phone_Activity extends AppCompatActivity {
 

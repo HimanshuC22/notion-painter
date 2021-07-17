@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,11 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+
+/**
+ * This is the adapter for showing contacts available for chat
+ * It uses a {@link User} class to store and get user details to firebase
+ */
 
 public class UsersAdapter extends  RecyclerView.Adapter<UsersAdapter.UsersViewHolder>{
 
@@ -47,6 +53,8 @@ public class UsersAdapter extends  RecyclerView.Adapter<UsersAdapter.UsersViewHo
         reference.getBytes(9*1024*1024).addOnSuccessListener(bytes -> {
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             Glide.with(context).load(bitmap).circleCrop().into(holder.imageView);
+            holder.progressBar.setVisibility(View.GONE);
+            holder.imageView.setVisibility(View.VISIBLE);
         });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -70,10 +78,12 @@ public class UsersAdapter extends  RecyclerView.Adapter<UsersAdapter.UsersViewHo
     public class UsersViewHolder extends RecyclerView.ViewHolder{
         ImageView imageView;
         TextView userName;
+        ProgressBar progressBar;
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.profile_list);
             userName = itemView.findViewById(R.id.username);
+            progressBar = itemView.findViewById(R.id.progressChat);
         }
     }
 

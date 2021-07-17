@@ -28,6 +28,10 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ *  This is the activity where two users chat
+ */
+
 public class ChatActivity extends AppCompatActivity {
 
     MessagesAdapter adapter;

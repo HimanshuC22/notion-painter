@@ -57,10 +57,9 @@ import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment showing user's profile details and handles methods to change them
  */
+
 public class ProfileFragment extends Fragment {
 
 

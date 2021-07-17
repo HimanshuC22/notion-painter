@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.iitinder.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -58,6 +57,7 @@ public class RequestsFragment extends Fragment {
     RecyclerView recyclerView;
     String EMAIL, LDAP;
     ArrayList<String> to_match;
+    HashMap<String, Integer> already_done;
     ConstraintLayout empty;
     ImageView imageView;
 
@@ -84,6 +84,7 @@ public class RequestsFragment extends Fragment {
         to_match = new ArrayList<>();
         recyclerView = view.findViewById(R.id.requests_recycler_view);
         empty = view.findViewById(R.id.emptyView);
+        already_done = new HashMap<>();
     }
 
     public void getInterestMatchList() {
@@ -115,6 +116,49 @@ public class RequestsFragment extends Fragment {
     }
 
     public void setUpRecyclerView() {
+
+        FirebaseDatabase.getInstance().getReference().child("data").child(LDAP).child("matches").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    already_done.put(dataSnapshot.getKey(), 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+            }
+        });
+        FirebaseDatabase.getInstance().getReference().child("data").child(LDAP).child("pending").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    already_done.put(dataSnapshot.getKey(), 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+        FirebaseDatabase.getInstance().getReference().child("data").child(LDAP).child("rejected").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren())
+                {
+                    already_done.put(dataSnapshot.getKey(), 1);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
         RequestAdapter adapter = new RequestAdapter(getContext(), to_match);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setOnFlingListener(null);
@@ -139,7 +183,7 @@ public class RequestsFragment extends Fragment {
 
                 LinkedHashMap<String, Double> mres = new FNormCalc(doubledata).compute(LDAP);
                 for (Map.Entry<String, Double> e : mres.entrySet()) {
-                    to_match.add(e.getKey());
+                    if(!(already_done.containsKey(e.getKey()))) to_match.add(e.getKey());
                     Log.d("TOMATCH", to_match.toString());
                     adapter.notifyDataSetChanged();
                 }

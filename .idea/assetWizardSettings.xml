@@ -82,7 +82,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="imageAsset" value="D:\chat.png" />
-                                      <entry key="outputName" value="ic_empty" />
+                                      <entry key="outputName" value="ic_launcher" />
                                       <entry key="themeColor" value="fd297b" />
                                     </map>
                                   </option>
@@ -111,6 +111,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\22him\AndroidStudioProjects\IITinder\app\src\main\res\drawable-xxhdpi\logo.png" />
+                                                <entry key="scalingPercent" value="69" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -140,6 +142,12 @@
                                       </entry>
                                     </map>
                                   </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="000000" />
+                                    </map>
+                                  </option>
                                 </PersistentState>
                               </value>
                             </entry>
@@ -155,6 +163,18 @@
                                               <map>
                                                 <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="C:\Users\22him\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="color" value="000000" />
+                                                <entry key="imagePath" value="C:\Users\22him\AndroidStudioProjects\IITinder\app\src\main\res\drawable-xxhdpi\logo.png" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -182,6 +202,13 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
+                                    </map>
+                                  </option>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="iconShape" value="CIRCLE" />
+                                      <entry key="imageAsset" value="C:\Users\22him\AndroidStudioProjects\IITinder\app\src\main\res\drawable-xxhdpi\logo.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -310,7 +337,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>

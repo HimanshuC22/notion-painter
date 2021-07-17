@@ -26,6 +26,11 @@ import org.w3c.dom.ls.LSException;
 
 import java.util.ArrayList;
 
+/**
+ * This fragment shows the list of all available chat contacts
+ * uses a RecyclerView and {@link UsersAdapter} as its adapter
+ */
+
 public class MainChatFragment extends Fragment {
 
 

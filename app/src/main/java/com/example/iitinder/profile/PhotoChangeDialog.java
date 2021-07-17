@@ -12,6 +12,10 @@ import androidx.fragment.app.DialogFragment;
 import com.example.iitinder.R;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+/**
+ * Dialog to show user options to change their profile photo
+ */
+
 public class PhotoChangeDialog extends BottomSheetDialogFragment {
 
     @Override

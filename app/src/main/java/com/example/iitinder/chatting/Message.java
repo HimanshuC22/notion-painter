@@ -1,5 +1,9 @@
 package com.example.iitinder.chatting;
 
+/**
+ * This class defines a message in chat
+ */
+
 public class Message {
 
     private String messageId, message, senderId;

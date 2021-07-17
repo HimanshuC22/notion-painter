@@ -17,15 +17,13 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new MainFragment();
-            case 1:
                 return new RequestsFragment();
-            case 2:
+            case 1:
                 return new MainChatFragment();
-            case 3:
+            case 2:
                 return new ProfileFragment();
         }
-        return new MainFragment();
+        return new RequestsFragment();
     }
 
     @Override

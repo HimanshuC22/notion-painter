@@ -21,6 +21,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * The adapter for showing message in a chat
+ */
+
 public class MessagesAdapter extends RecyclerView.Adapter{
 
     Context context;

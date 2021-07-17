@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseLongArray;
@@ -16,6 +17,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.iitinder.MainActivity;
 import com.example.iitinder.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -68,7 +70,6 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
         sharedPreferences = getSharedPreferences("DETAILS", MODE_PRIVATE);
         String EMAIL, PASSWORD;
         EMAIL = sharedPreferences.getString("EMAIL", "LDAP_NOT_FOUND_IN_PREFERENCES");
@@ -77,11 +78,10 @@ public class SplashScreen extends AppCompatActivity {
         appName = findViewById(R.id.app_name);
         appTitle = findViewById(R.id.app_title);
         lottieAnimationView = findViewById(R.id.lottie);
-        lottieAnimationView.animate().translationY(-500).setDuration(1000).setStartDelay(4000);
-        appName.animate().translationY(-900).setDuration(1000).setStartDelay(4000);
-        fade();
-        appTitle.animate().translationY(-800).setDuration(1000).setStartDelay(4000);
-
+//        lottieAnimationView.animate().translationY(-500).setDuration(500).setStartDelay(2000);
+        appName.animate().translationY(-600).setDuration(500).setStartDelay(2700);
+//        fade();
+//        appTitle.animate().translationY(-800).setDuration(500).setStartDelay(2000);
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -99,7 +99,7 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 });
             }
-        }, 6000);
+        }, 3000);
     }
 
     public void fade() {
