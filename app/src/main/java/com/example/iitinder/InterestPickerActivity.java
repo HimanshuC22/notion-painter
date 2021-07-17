@@ -29,6 +29,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
+/**
+ * Activity for Picking interests
+ */
+
 public class InterestPickerActivity extends AppCompatActivity {
     ArrayList<String> interestList;
     ArrayList<String>[] INTEREST_FINAL;

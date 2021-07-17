@@ -28,6 +28,10 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
+/**
+ * Adapter for the matches list
+ */
+
 public class MatchRecyclerAdapter extends RecyclerView.Adapter<MatchRecyclerAdapter.ViewHolder> {
 
     private Context context;

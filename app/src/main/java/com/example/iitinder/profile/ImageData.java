@@ -2,6 +2,10 @@ package com.example.iitinder.profile;
 
 import android.graphics.Bitmap;
 
+/**
+ * Class to define an image and its properties
+ */
+
 public class ImageData {
     String name, url;
     Bitmap bitmap;

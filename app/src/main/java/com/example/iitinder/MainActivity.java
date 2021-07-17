@@ -26,6 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
  */
 import java.io.IOException;
 
+/**
+ * Main Screen of the app
+ */
+
  public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;

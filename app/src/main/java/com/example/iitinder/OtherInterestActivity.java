@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Activity to show the user interests of the other users
+ */
+
 public class OtherInterestActivity extends AppCompatActivity {
 
     String LDAP;

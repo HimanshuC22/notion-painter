@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * This is the activity where the fragment which holds the matches' cards is placed
+ * This is the activity which shows with whom we are successfully matched
  */
 public class MatchesActivity extends AppCompatActivity {
 

@@ -6,6 +6,10 @@ import android.os.Bundle;
 
 import com.example.iitinder.R;
 
+/**
+ * Activity to show the {@link ImageChangeFragment}
+ */
+
 public class ImageChangeActivity extends AppCompatActivity {
 
     @Override

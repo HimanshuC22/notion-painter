@@ -1,5 +1,9 @@
 package com.example.iitinder;
 
+/**
+ * Class for data of an interest
+ */
+
 public class InterestData {
 
     private String interestName;

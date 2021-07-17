@@ -35,6 +35,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Activity to show the user profile details of other users
+ */
+
 public class OtherProfileActivity extends AppCompatActivity {
 
     String LDAP;

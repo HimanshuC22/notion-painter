@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * Adapter for showing sub interests
+ */
+
 public class InterestAdapter extends RecyclerView.Adapter<InterestViewHolder> {
 
     private Context mContext;

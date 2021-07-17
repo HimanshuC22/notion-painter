@@ -8,6 +8,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Adapter for the grid of sub-interests
+ */
+
 public class InterestGridAdapter extends BaseAdapter {
 
     public Context mContext;

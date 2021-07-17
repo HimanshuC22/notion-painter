@@ -2,6 +2,10 @@ package com.example.iitinder.profile;
 
 import android.graphics.Bitmap;
 
+/**
+ * Class for the data of the ExpandableListView to show interests
+ */
+
 public class DataModel {
     String name, url;
     Bitmap bitmap;

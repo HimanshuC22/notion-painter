@@ -40,10 +40,9 @@ import com.google.firebase.storage.StorageReference;
 import java.io.ByteArrayOutputStream;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ImageChangeFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment to handle profile photo change action
  */
+
 public class ImageChangeFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match

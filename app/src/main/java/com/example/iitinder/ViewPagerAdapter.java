@@ -8,6 +8,10 @@ import com.example.iitinder.chatting.MainChatFragment;
 import com.example.iitinder.profile.ProfileFragment;
 import com.example.iitinder.requests.RequestsFragment;
 
+/**
+ * Adapter for the MainActivity swipe view pager
+ */
+
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(FragmentActivity fragmentActivity) {
         super(fragmentActivity);

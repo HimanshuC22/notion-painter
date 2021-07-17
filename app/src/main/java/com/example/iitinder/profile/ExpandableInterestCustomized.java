@@ -12,6 +12,10 @@ import com.example.iitinder.R;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Adapter for the ExpandableListView to show interests
+ */
+
 public class ExpandableInterestCustomized extends BaseExpandableListAdapter {
 
     private Context context;
