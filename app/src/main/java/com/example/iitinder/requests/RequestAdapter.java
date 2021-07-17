@@ -35,7 +35,10 @@ import org.jetbrains.annotations.TestOnly;
 
 import java.util.ArrayList;
 
-
+/**
+ * This is the adapter for the recycler view.
+ * It fill the recycler view with data
+ */
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHolder> {
     String EMAIL = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     String myLDAP = EMAIL.substring(0, EMAIL.indexOf("@"));

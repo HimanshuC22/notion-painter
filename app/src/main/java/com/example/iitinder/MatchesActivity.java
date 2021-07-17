@@ -22,6 +22,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * This is the activity where the fragment which holds the matches' cards is placed
+ */
 public class MatchesActivity extends AppCompatActivity {
 
     // Variables

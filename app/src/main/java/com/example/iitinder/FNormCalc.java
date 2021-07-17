@@ -6,6 +6,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * This class implements the match making algorithm
+ * FNorm stands for Forbenius norm
+ */
 public class FNormCalc {
     HashMap<String, ArrayList<Double>> data;
     int PREFS_SIZE;

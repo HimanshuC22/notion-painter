@@ -34,6 +34,9 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * This is the screen where you see your matches
+ */
 public class RequestsFragment extends Fragment {
 
 
